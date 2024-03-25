@@ -59,11 +59,7 @@ function createPlayer(name, mark) {
 }
 
 const Game = (function() {
-    const players = [
-        createPlayer("Player 1", "X"),
-        createPlayer("Player 2", "O"),
-    ];
-    const players = [createPlayer("Player 1", "X"), createPlayer("Player 2", "O")];
+    const players = [];
     let currentPlayer;
     let gameOver;
 
@@ -77,6 +73,11 @@ const Game = (function() {
         [0, 4, 8],
         [2, 4, 6],
     ];
+
+    function createPlayers(name1, name2) {
+        players.push(createPlayer(name1, "X"));
+        players.push(createPlayer(name2, "O"));
+    }
 
     function start() {
         currentPlayer = 0;
@@ -136,6 +137,7 @@ const Game = (function() {
     }
 
     return {
+        createPlayers,
         start,
         restart,
         playRound,
@@ -144,5 +146,20 @@ const Game = (function() {
 
 document
     .querySelector("#restart-button")
-    .addEventListener("click", Game.restart);
-Game.start();
+    .addEventListener("click", () => Game.restart());
+
+const playerDialog = document.querySelector("#player-dialog");
+window.addEventListener("load", () => {
+    document.querySelector("#player1-name").value = "";
+    document.querySelector("#player2-name").value = "";
+    playerDialog.showModal();
+});
+const startButton = document.querySelector("#start-button");
+startButton.addEventListener("click", () => {
+    Game.createPlayers(
+        document.querySelector("#player1-name").value,
+        document.querySelector("#player2-name").value,
+    );
+
+    Game.start();
+});
