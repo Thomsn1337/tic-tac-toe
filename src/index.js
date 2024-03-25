@@ -1,10 +1,10 @@
 const DisplayController = (function() {
-    function updateWinnerMessage(message) {
-        document.querySelector("#winner-message").innerText = message;
+    function updateMessage(message) {
+        document.querySelector("#message").innerText = message;
     }
 
     return {
-        updateWinnerMessage,
+        updateMessage,
     };
 })();
 
@@ -82,10 +82,10 @@ const Game = (function() {
         const gameStatus = checkGameStatus(GameBoard.getBoard());
         if (gameStatus === "draw") {
             gameOver = true;
-            DisplayController.updateWinnerMessage("It's a draw!");
+            DisplayController.updateMessage("It's a draw!");
         } else if (gameStatus === "winner") {
             gameOver = true;
-            DisplayController.updateWinnerMessage(
+            DisplayController.updateMessage(
                 `${players[currentPlayer].name} has won!`,
             );
         }
