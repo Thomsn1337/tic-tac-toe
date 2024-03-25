@@ -63,6 +63,7 @@ const Game = (function() {
         createPlayer("Player 1", "X"),
         createPlayer("Player 2", "O"),
     ];
+    const players = [createPlayer("Player 1", "X"), createPlayer("Player 2", "O")];
     let currentPlayer;
     let gameOver;
 
@@ -81,13 +82,14 @@ const Game = (function() {
         currentPlayer = 0;
         gameOver = false;
         GameBoard.draw();
+        DisplayController.updateMessage(`${players[currentPlayer].name}'s turn`);
     }
 
     function restart() {
         currentPlayer = 0;
         gameOver = false;
         GameBoard.reset();
-        DisplayController.updateMessage("");
+        DisplayController.updateMessage(`${players[currentPlayer].name}'s turn`);
     }
 
     function playRound(tileIndex) {
@@ -101,14 +103,17 @@ const Game = (function() {
         if (gameStatus === "draw") {
             gameOver = true;
             DisplayController.updateMessage("It's a draw!");
+            return;
         } else if (gameStatus === "winner") {
             gameOver = true;
             DisplayController.updateMessage(
                 `${players[currentPlayer].name} has won!`,
             );
+            return;
         }
 
         currentPlayer = currentPlayer === 0 ? 1 : 0;
+        DisplayController.updateMessage(`${players[currentPlayer].name}'s turn`);
     }
 
     function checkGameStatus(gameboard) {
