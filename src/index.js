@@ -26,6 +26,16 @@ const GameBoard = (function() {
         }
     }
 
+    function reset() {
+        for (let i = 0; i < board.length; i++) {
+            board[i] = "";
+        }
+
+        document.querySelectorAll(".game-tile").forEach((tile) => {
+            tile.innerText = "";
+        });
+    }
+
     const getBoard = () => board;
 
     function update(i, mark) {
@@ -38,6 +48,7 @@ const GameBoard = (function() {
 
     return {
         draw,
+        reset,
         update,
         getBoard,
     };
@@ -70,6 +81,13 @@ const Game = (function() {
         currentPlayer = 0;
         gameOver = false;
         GameBoard.draw();
+    }
+
+    function restart() {
+        currentPlayer = 0;
+        gameOver = false;
+        GameBoard.reset();
+        DisplayController.updateMessage("");
     }
 
     function playRound(tileIndex) {
@@ -114,8 +132,12 @@ const Game = (function() {
 
     return {
         start,
+        restart,
         playRound,
     };
 })();
 
+document
+    .querySelector("#restart-button")
+    .addEventListener("click", Game.restart);
 Game.start();
