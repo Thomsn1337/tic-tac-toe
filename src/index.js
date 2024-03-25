@@ -147,6 +147,7 @@ document
     .querySelector("#restart-button")
     .addEventListener("click", () => Game.restart());
 
+document.querySelector("#new-game-button").addEventListener("click", () => window.location.reload())
 const playerDialog = document.querySelector("#player-dialog");
 window.addEventListener("load", () => {
     document.querySelector("#player1-name").value = "";
