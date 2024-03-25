@@ -118,10 +118,6 @@ const Game = (function() {
     }
 
     function checkGameStatus(gameboard) {
-        if (gameboard.every((e) => e !== "")) {
-            return "draw";
-        }
-
         for (let i = 0; i < winningConditions.length; i++) {
             const [a, b, c] = winningConditions[i];
             if (
@@ -131,6 +127,9 @@ const Game = (function() {
             ) {
                 return "winner";
             }
+        }
+        if (gameboard.every((e) => e !== "")) {
+            return "draw";
         }
 
         return "continue";
