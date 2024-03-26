@@ -15,18 +15,20 @@
     <main>
         <div id="message"></div>
         <div id="gameboard"></div>
-        <button id="restart-button">Restart</button>
-        <button id="new-game-button">New Game</button>
+        <div class="buttons">
+            <button id="restart-button">Restart</button>
+            <button id="new-game-button">New Game</button>
+        </div>
         <dialog id="player-dialog">
             <h2>Who is playing?</h2>
             <form method="dialog">
                 <div class="input-box">
                     <label for="player1-name">First player name</label>
-                    <input type="text" name="player1-name" id="player1-name" required/>
+                    <input type="text" name="player1-name" id="player1-name" required />
                 </div>
                 <div class="input-box">
                     <label for="player2-name">Second player name</label>
-                    <input type="text" name="player2-name" id="player2-name" required/>
+                    <input type="text" name="player2-name" id="player2-name" required />
                 </div>
                 <button type="submit" id="start-button">Start</button>
             </form>
