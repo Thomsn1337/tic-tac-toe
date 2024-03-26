@@ -147,19 +147,28 @@ document
     .querySelector("#restart-button")
     .addEventListener("click", () => Game.restart());
 
-document.querySelector("#new-game-button").addEventListener("click", () => window.location.reload())
+document
+    .querySelector("#new-game-button")
+    .addEventListener("click", () => window.location.reload());
+
 const playerDialog = document.querySelector("#player-dialog");
 window.addEventListener("load", () => {
     document.querySelector("#player1-name").value = "";
     document.querySelector("#player2-name").value = "";
     playerDialog.showModal();
 });
+
+playerDialog.addEventListener("cancel", (e) => {
+    e.preventDefault();
+});
+
 const startButton = document.querySelector("#start-button");
 startButton.addEventListener("click", () => {
-    Game.createPlayers(
-        document.querySelector("#player1-name").value,
-        document.querySelector("#player2-name").value,
-    );
+    const player1_Name = document.querySelector("#player1-name").value;
+    const player2_Name = document.querySelector("#player2-name").value;
 
-    Game.start();
+    if (player1_Name !== "" && player2_Name !== "") {
+        Game.createPlayers(player1_Name, player2_Name);
+        Game.start();
+    }
 });
