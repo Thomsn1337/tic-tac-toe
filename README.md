@@ -4,5 +4,6 @@ A simple Tic-Tac-Toe game written in vanilla JavaScript using mainly factories a
 
 ## Links
 
+- [Preview](https://thomsn1337.github.io/tic-tac-toe/)
 - [About Odin](https://www.theodinproject.com/about)
 - [Assignment page](https://www.theodinproject.com/lessons/node-path-javascript-tic-tac-toe)
